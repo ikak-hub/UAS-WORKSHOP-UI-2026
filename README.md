@@ -1,7 +1,4 @@
 
-  # Pixel-perfect web implementation
-
-  This is a code bundle for Pixel-perfect web implementation. The original project is available at https://www.figma.com/design/KIyMlMyw0eH5wSRXRRwKdq/Pixel-perfect-web-implementation.
 
   ## Running the code
 
