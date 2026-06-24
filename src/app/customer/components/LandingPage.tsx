@@ -10,6 +10,8 @@ interface Props {
   onEditProfile?: () => void;
 }
 
+// PNavbar bounds: left=75, top=45, w=1578.342, h=66.686
+// Button positions derived from Group23 inset percentages
 const NAV_LEFT = 75;
 const NAV_TOP = 45;
 const NAV_W = 1578.342;
@@ -34,6 +36,8 @@ function navBtn(leftPct: number, rightPct: number) {
 
 export default function LandingPage({ onLogin, onArtikel, onKatalog, onHistory, onEditProfile }: Props) {
   // Total page height: footer (Group14) top=2686 + height=599 = 3285px
+  // See More text: left=calc(83.33%-2px)≈1438, top=calc(50%+944.86px)
+  // At minHeight 3285: 50% = 1642.5 + 944.86 ≈ 2587
   const PAGE_H = 3285;
 
   return (
@@ -41,7 +45,7 @@ export default function LandingPage({ onLogin, onArtikel, onKatalog, onHistory, 
       <div className="relative" style={{ width: 1728, minHeight: PAGE_H }}>
         <LandingPageImport />
 
-        {/* Clickable profile circle */}
+        {/* Clickable profile circle (landing navbar geometry: left≈1587, top≈45, size≈67) */}
         <ProfileMenu
           onHistory={onHistory ?? (() => {})}
           onEditProfile={onEditProfile ?? (() => {})}
@@ -56,18 +60,17 @@ export default function LandingPage({ onLogin, onArtikel, onKatalog, onHistory, 
         <button aria-label="Katalog" onClick={onKatalog} style={navBtn(0.6862, 0.2435)} />
         {/* Artikel nav button */}
         <button aria-label="Artikel" onClick={onArtikel} style={navBtn(0.7717, 0.158)} />
-        
-        {/* SEKARANG SUDAH DIPINDAH TURUN KE BAWAH */}
+        {/* See More → Artikel */}
         <button
           aria-label="See More"
           onClick={onArtikel}
           style={{
             position: "absolute",
-            left: 780,                    // Diganti ke tengah halaman secara horizontal
-            top: 2590,                    // Disesuaikan agar berada di bawah baris kategori/artikel
+            left: 1438,
+            top: PAGE_H * 0.5 + 944.86,
             width: 160,
-            height: 40,
-            background: "transparent",    // Tetap transparan agar klik pas di gambar teks bawaan
+            height: 30,
+            background: "transparent",
             border: "none",
             cursor: "pointer",
             zIndex: 100,

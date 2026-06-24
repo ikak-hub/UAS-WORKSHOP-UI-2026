@@ -59,7 +59,7 @@ function Group9() {
   return (
     <div className="absolute contents left-[130px] top-[1395px]">
       <div className="absolute flex h-[295px] items-center justify-center left-[130px] top-[1395px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle8} />
@@ -69,7 +69,7 @@ function Group9() {
       </div>
       <Group15 />
       <div className="absolute flex h-[295px] items-center justify-center left-[calc(25%+78.3px)] top-[1395px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle9} />
@@ -144,6 +144,7 @@ function ContainerArtikel() {
   return (
     <div className="absolute contents left-[69px] top-[1902px]" data-name="Container Artikel">
       <div className="absolute bg-white border-5 border-black border-solid h-[737px] left-[69px] rounded-[35px] top-[1902px] w-[1600px]" />
+      {/* INI DIA MASALAHNYA: Teks See More tercetak mati di sini dengan top-[calc(50%+944.86px)] */}
       <p className="[word-break:break-word] absolute font-['Montserrat:SemiBold',sans-serif] font-semibold h-[14.755px] leading-[normal] left-[calc(83.33%+47px)] text-[20px] text-black top-[calc(50%+944.86px)] w-[135px]">{`See More.... >`}</p>
     </div>
   );

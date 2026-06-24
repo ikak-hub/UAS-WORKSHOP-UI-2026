@@ -59,7 +59,7 @@ function Group9() {
   return (
     <div className="absolute contents left-[130px] top-[1395px]">
       <div className="absolute flex h-[295px] items-center justify-center left-[130px] top-[1395px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle8} />
@@ -69,7 +69,7 @@ function Group9() {
       </div>
       <Group15 />
       <div className="absolute flex h-[295px] items-center justify-center left-[calc(25%+78.3px)] top-[1395px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle9} />
@@ -144,7 +144,7 @@ function ContainerArtikel() {
   return (
     <div className="absolute contents left-[69px] top-[1902px]" data-name="Container Artikel">
       <div className="absolute bg-white border-5 border-black border-solid h-[737px] left-[69px] rounded-[35px] top-[1902px] w-[1600px]" />
-      <p className="[word-break:break-word] absolute font-['Montserrat:SemiBold',sans-serif] font-semibold h-[14.755px] leading-[normal] left-[calc(83.33%+47px)] text-[20px] text-black top-[calc(50%+944.86px)] w-[135px]">{`See More.... >`}</p>
+      <p className="[word-break:break-word] absolute font-['Montserrat:SemiBold',sans-serif] font-semibold h-[14.755px] leading-[normal] left-[1509px] text-[20px] text-black top-[2609px] w-[135px]">{`See More.... >`}</p>
     </div>
   );
 }
@@ -401,7 +401,7 @@ function Frame1() {
   return (
     <div className="absolute h-[452px] left-[454px] top-0 w-[414.173px]">
       <div className="absolute flex h-[736px] items-center justify-center left-0 top-[-103px] w-[414px]">
-        <div className="-scale-y-100 flex-none rotate-180">
+        <div className="flex-none">
           <div className="h-[736px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[0px_103px] mask-size-[414.173px_452px] relative w-[414px]" style={{ maskImage: `url("${imgRectangle138}")` }}>
             <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgRectangle139} />
           </div>
