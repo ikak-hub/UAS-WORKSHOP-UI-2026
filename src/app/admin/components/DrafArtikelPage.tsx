@@ -1,5 +1,5 @@
-import AdminNavbar from "./AdminNavbar";
-import type { Article } from "../../shared/types";
+import AdminNavbar from "../AdminNavbar";
+import type { Article } from "../../types";
 
 /**
  * admin/components/DraftArtikelPage.tsx

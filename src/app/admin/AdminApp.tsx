@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../shared/context/AuthContext";
 import AdminDashboard from "./components/DashboardPage";
 import KelolaArtikel from "./components/KelolaArtikelPage";
 import AddArtikel from "./components/AddArtikelPage";
@@ -19,7 +19,7 @@ import { ARTIKEL_BY_CATEGORY } from "./data/artikelData";
 import type {
   Article, Transaksi, TransaksiStatus,
   PenggunaUmum, PenggunaPerental,
-} from "../shared/types";
+} from "../types";
 
 type AdminPage =
   | "dashboard"

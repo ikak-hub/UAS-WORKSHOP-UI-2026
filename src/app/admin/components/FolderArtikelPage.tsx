@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
-import AdminNavbar from "./AdminNavbar";
+import AdminNavbar from "../AdminNavbar";
 import ArtikelSubHeader from "./ArtikelSubHeader";
-import type { Article } from "../../shared/types";
+import type { Article } from "../../types";
 
 function TrashIcon() {
   return (

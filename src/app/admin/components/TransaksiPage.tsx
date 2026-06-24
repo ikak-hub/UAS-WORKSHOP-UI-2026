@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
-import AdminNavbar from "./AdminNavbar";
+import AdminNavbar from "../AdminNavbar";
 import TransaksiPageHeader from "./TransaksiPageHeader";
-import type { Transaksi, TransaksiStatus } from "../../shared/types";
+import type { Transaksi, TransaksiStatus } from "../../types";
 
 const fmtIDR = (n: number) => "Rp " + n.toLocaleString("id-ID") + ",00";
 

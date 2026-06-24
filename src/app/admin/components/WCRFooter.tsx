@@ -1,4 +1,4 @@
-import { LogoMark } from "../../shared/components/LogoMark";
+import { LogoMark } from "../../seller/components/LogoMark";
 
 /**
  * Footer biru WCR — dipakai di DetailArtikelPage.

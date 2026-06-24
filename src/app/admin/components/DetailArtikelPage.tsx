@@ -1,8 +1,8 @@
 import { useState } from "react";
-import AdminNavbar from "./AdminNavbar";
+import AdminNavbar from "../AdminNavbar";
 import ArtikelSubHeader from "./ArtikelSubHeader";
 import WCRFooter from "./WCRFooter";
-import type { Article } from "../../shared/types";
+import type { Article } from "../../types";
 
 export default function DetailArtikelPage({
   article: initialArticle,

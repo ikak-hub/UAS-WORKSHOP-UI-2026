@@ -1,6 +1,6 @@
-import AdminNavbar from "./AdminNavbar";
+import AdminNavbar from "../AdminNavbar";
 import AdminPageHeader from "./AdminPageHeader";
-import type { PenggunaPerental } from "../../shared/types";
+import type { PenggunaPerental } from "../../types";
 
 function AvatarIcon() {
   return (

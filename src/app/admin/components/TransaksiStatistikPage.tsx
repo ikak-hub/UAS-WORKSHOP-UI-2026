@@ -1,6 +1,6 @@
-import AdminNavbar from "./AdminNavbar";
+import AdminNavbar from "../AdminNavbar";
 import TransaksiPageHeader from "./TransaksiPageHeader";
-import type { Transaksi } from "../../shared/types";
+import type { Transaksi } from "../../types";
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
 const fmtIDR = (n: number) => "Rp " + n.toLocaleString("id-ID");

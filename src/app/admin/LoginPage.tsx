@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LogoMark } from "../../shared/components/LogoMark";
+import { LogoMark } from "../seller/components/LogoMark";
 
 /* Halaman login khusus Admin.*/
 export default function LoginPage({ onLogin }: { onLogin: () => void }) {

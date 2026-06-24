@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
-import AdminNavbar from "./AdminNavbar";
+import AdminNavbar from "../AdminNavbar";
 import AdminPageHeader from "./AdminPageHeader";
-import type { PenggunaUmum } from "../../shared/types";
+import type { PenggunaUmum } from "../../types";
 
 function AvatarIcon() {
   return (

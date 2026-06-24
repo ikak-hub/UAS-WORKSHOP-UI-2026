@@ -1,4 +1,4 @@
-import { LogoMark } from "../shared/LogoMark";
+import { LogoMark } from "../seller/components/LogoMark";
 
 /**
  * admin/components/AdminNavbar.tsx

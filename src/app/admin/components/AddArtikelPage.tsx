@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AdminNavbar from "../AdminNavbar";
-import type { Article, DraftStatus } from "../../shared/types";
+import type { Article, DraftStatus } from "../../types";
 
 /**
  * admin/components/AddArtikelPage.tsx
