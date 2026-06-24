@@ -1,6 +1,14 @@
-import AdminNavbar from "./AdminNavbar";
+import AdminNavbar from "../AdminNavbar";
 
-type AdminPage = "login" | "dashboard" | "kelola_artikel" | "add_artikel" | "draft_artikel";
+type AdminPage =
+  | "login"
+  | "dashboard"
+  | "kelola_artikel"
+  | "add_artikel"
+  | "draft_artikel"
+  | "kelola_transaksi"
+  | "daftar_transaksi"
+  | "detail_transaksi";
 
 /**
  * admin/components/DashboardPage.tsx
@@ -19,7 +27,7 @@ export default function DashboardPage({
       desc: "KELOLA PENCAIRAN DAN PEMOTONGAN APLIKASI UNTUK SETIAP PEMILIK",
       img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=200&q=70",
       accent: "#0094F6",
-      page: null as AdminPage | null,
+      page: "kelola_transaksi" as AdminPage | null,
     },
     {
       title: "MANAJEMEN FORUM",

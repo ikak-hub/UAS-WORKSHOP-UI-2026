@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { LogoMark } from "../../shared/components/LogoMark";
 
-/**
- * admin/components/LoginPage.tsx
- * Halaman login khusus Admin.
- */
+/* Halaman login khusus Admin.*/
 export default function LoginPage({ onLogin }: { onLogin: () => void }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
