@@ -3,6 +3,7 @@ import { useState } from "react";
 import DetailProductImport from "../../../imports/DetailProduct/index";
 import type { CartItem } from "../../types";
 import { ProfileMenu } from "./ProfileMenu";
+import type { ProductData } from "../data/product";
 
 interface Props {
   onHome: () => void;
@@ -13,6 +14,7 @@ interface Props {
   onGoToCart?: () => void;
   onHistory?: () => void;
   onEditProfile?: () => void;
+  product?: ProductData; // <-- tambah ini
 }
 
 // Pnavbar: h=127px, buttons at top≈45.83, h≈37.1 within the 1728px canvas
@@ -146,7 +148,13 @@ function CalendarMonth({
   );
 }
 
-export default function DetailProductPage({ onHome, onArtikel, onKatalog, onCheckout, onAddToCart, onGoToCart, onHistory, onEditProfile }: Props) {
+export default function DetailProductPage({ onHome, onArtikel, onKatalog, onCheckout, onAddToCart, onGoToCart, onHistory, onEditProfile, product, }: Props) {
+   // Nama & info produk dari props, fallback ke default
+  const productName = product?.name ?? "Kebaya Janggan Merah";
+  const productDesc = product?.description ?? "Baju ini berdesain elegan dan mewah...";
+  const productSize = product?.size ?? "L";
+  const productLocation = product?.location ?? "Jakarta Selatan";
+  const productCategory = product?.category ?? "Baju Adat";
   const [cartAdded, setCartAdded] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -193,10 +201,10 @@ export default function DetailProductPage({ onHome, onArtikel, onKatalog, onChec
     }
     const newItem: CartItem = {
       id: `cart-${Date.now()}`,
-      name: "Kebaya Janggan (Merah)",
-      description: "Kebaya wisuda elegan dengan nuansa bali",
-      seller: "Sicepot",
-      size: "L",
+      name: productName,           // <-- pakai variabel
+      description: productDesc,   // <-- pakai variabel
+      seller: "WCR",
+      size: productSize,           // <-- pakai variabel
       startDate: startDate.toISOString(),
       endDate: endDate.toISOString(),
       rentalDays,
@@ -222,6 +230,109 @@ export default function DetailProductPage({ onHome, onArtikel, onKatalog, onChec
     <ResponsiveCanvas>
       <div className="relative" style={{ width: 1728, height: 1808 }}>
         <DetailProductImport />
+
+        <div
+          style={{
+            position: "absolute",
+            left: 120,
+            top: 162,
+            width: 1100,
+            zIndex: 50,
+            pointerEvents: "none",
+          }}
+        >
+          {/* Nama produk */}
+          <h1
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 700,
+              fontSize: 36,
+              color: "#000",
+              margin: "0 0 4px 0",
+              lineHeight: 1.3,
+            }}
+          >
+            {productName}
+          </h1>
+          {/* Kategori */}
+          <p
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 600,
+              fontSize: 24,
+              color: "#000",
+              margin: "0 0 8px 0",
+            }}
+          >
+            {productCategory}
+          </p>
+        </div>
+
+        {/* Overlay deskripsi produk (menutupi teks Figma di top≈809) */}
+        <div
+          style={{
+            position: "absolute",
+            left: 125,
+            top: 809,
+            width: 1100,
+            zIndex: 50,
+            pointerEvents: "none",
+            fontFamily: "'Open Sans', sans-serif",
+            fontStyle: "italic",
+            fontSize: 20,
+            color: "#000",
+            lineHeight: 1.8,
+            background: "#fff", // menutupi teks Figma
+            padding: "8px 0",
+          }}
+        >
+          <p style={{ margin: "0 0 8px 0" }}>{productDesc}</p>
+          <p style={{ margin: "0 0 4px 0", fontWeight: 600, fontStyle: "normal" }}>Kelengkapan Sewa:</p>
+          <ul style={{ margin: 0, paddingLeft: 24 }}>
+            <li>Pakaian Utama: {productName}</li>
+            <li>Pakaian Pendamping sesuai paket</li>
+            <li>Aksesori pelengkap (tergantung paket sewa)</li>
+            <li>Layanan laundry termasuk dalam harga sewa</li>
+          </ul>
+        </div>
+
+        {/* Overlay Size & Lokasi (menutupi Figma di top≈1017-1072) */}
+        <div
+          style={{
+            position: "absolute",
+            left: 125,
+            top: 1010,
+            zIndex: 50,
+            pointerEvents: "none",
+            background: "#fff",
+            padding: "4px 8px",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 12, fontFamily: "'Open Sans', sans-serif", fontSize: 22, color: "#000", marginBottom: 8 }}>
+            <span>Size:</span>
+            <span
+              style={{
+                display: "inline-block",
+                background: "#D9D9D9",
+                borderRadius: "50%",
+                width: 36,
+                height: 36,
+                textAlign: "center",
+                lineHeight: "36px",
+                fontWeight: 600,
+              }}
+            >
+              {productSize}
+            </span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "'Open Sans', sans-serif", fontSize: 22, color: "#000" }}>
+            <svg width="18" height="22" viewBox="0 0 20 24" fill="none">
+              <path d="M10 0C6.13 0 3 3.13 3 7c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S8.62 4.5 10 4.5s2.5 1.12 2.5 2.5S11.38 9.5 10 9.5z" fill="black"/>
+            </svg>
+            <span>{productLocation}</span>
+          </div>
+        </div>
+
         <ProfileMenu onHistory={onHistory ?? (() => {})} onEditProfile={onEditProfile ?? (() => {})} />
 
         {/* Nav buttons */}
