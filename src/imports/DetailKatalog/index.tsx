@@ -188,7 +188,7 @@ function Group6() {
         </div>
       </div>
       <div className="absolute flex h-[295px] items-center justify-center left-[506.3px] top-[792px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute bg-[#d9d9d9] inset-0 rounded-[20px]" />
           </div>
@@ -204,7 +204,7 @@ function Group6() {
         </div>
       </div>
       <div className="absolute flex h-[295px] items-center justify-center left-[886.59px] top-[792px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle9} />
@@ -213,7 +213,7 @@ function Group6() {
         </div>
       </div>
       <div className="absolute flex h-[295px] items-center justify-center left-[1266.89px] top-[792px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
@@ -298,7 +298,7 @@ function Group7() {
   return (
     <div className="absolute contents left-[127px] top-[1373px]">
       <div className="absolute flex h-[295px] items-center justify-center left-[130px] top-[1373px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle11} />
@@ -307,7 +307,7 @@ function Group7() {
         </div>
       </div>
       <div className="absolute flex h-[295px] items-center justify-center left-[510.3px] top-[1373px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle12} />
@@ -316,7 +316,7 @@ function Group7() {
         </div>
       </div>
       <div className="absolute flex h-[295px] items-center justify-center left-[890.59px] top-[1373px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
@@ -327,7 +327,7 @@ function Group7() {
         </div>
       </div>
       <div className="absolute flex h-[295px] items-center justify-center left-[1270.89px] top-[1373px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
@@ -401,7 +401,7 @@ function Group8() {
   return (
     <div className="absolute contents left-[128px] top-[1875px]">
       <div className="absolute flex h-[295px] items-center justify-center left-[130px] top-[1875px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
@@ -412,7 +412,7 @@ function Group8() {
         </div>
       </div>
       <div className="absolute flex h-[295px] items-center justify-center left-[510.3px] top-[1875px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle16} />
@@ -421,7 +421,7 @@ function Group8() {
         </div>
       </div>
       <div className="absolute flex h-[295px] items-center justify-center left-[890.59px] top-[1875px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
@@ -432,7 +432,7 @@ function Group8() {
         </div>
       </div>
       <div className="absolute flex h-[295px] items-center justify-center left-[1270.89px] top-[1875px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
@@ -516,7 +516,7 @@ function Cosplay() {
   return (
     <div className="absolute contents left-[127px] top-[2391px]" data-name="Cosplay">
       <div className="absolute flex h-[295px] items-center justify-center left-[129px] top-[2455px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
@@ -527,7 +527,7 @@ function Cosplay() {
         </div>
       </div>
       <div className="absolute flex h-[295px] items-center justify-center left-[509.3px] top-[2455px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
@@ -538,7 +538,7 @@ function Cosplay() {
         </div>
       </div>
       <div className="absolute flex h-[295px] items-center justify-center left-[889.59px] top-[2455px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
@@ -549,7 +549,7 @@ function Cosplay() {
         </div>
       </div>
       <div className="absolute flex h-[295px] items-center justify-center left-[1269.89px] top-[2455px] w-[326.517px]">
-        <div className="-scale-y-100 flex-none">
+        <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
