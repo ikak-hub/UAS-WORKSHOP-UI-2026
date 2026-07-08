@@ -13,6 +13,7 @@ import KelolaPenggunaFolderPage from "./components/KelolaPenggunaFolderPage";
 import KelolaPenggunaUmumPage from "./components/KelolaPenggunaUmumPage";
 import KelolaPenggunaPerentalPage from "./components/KelolaPenggunaPerentalPage";
 import VerifikasiAkunPerentalPage from "./components/VerifikasiAkunPerentalPage";
+import Loginpage from "./LoginPage";
 import { TRANSAKSI_LIST } from "./data/transaksiData";
 import { PENGGUNA_UMUM_LIST, PENGGUNA_PERENTAL_LIST } from "./data/penggunaData";
 import { ARTIKEL_BY_CATEGORY } from "./data/artikelData";

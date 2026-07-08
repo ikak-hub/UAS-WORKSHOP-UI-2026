@@ -190,15 +190,15 @@ function Group6() {
       <div className="absolute flex h-[295px] items-center justify-center left-[506.3px] top-[792px] w-[326.517px]">
         <div className="flex-none">
           <div className="h-[295px] relative w-[326.517px]">
-            <div className="absolute bg-[#d9d9d9] inset-0 rounded-[20px]" />
+            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle8} />
           </div>
         </div>
       </div>
       <div className="absolute flex inset-[24.11%_51.79%_66.91%_29.17%] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
+        <div className="flex-none h-[100cqh] w-[100cqw]">
           <div className="relative rounded-[20px] size-full">
             <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-              <img alt="" className="absolute h-[-255.97%] left-full max-w-none top-[100.43%] w-[-100%]" src={imgRectangle8} />
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle8} />
             </div>
           </div>
         </div>
@@ -217,7 +217,7 @@ function Group6() {
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-                <img alt="" className="absolute h-[-138.25%] left-full max-w-none top-[110.4%] w-[-100%]" src={imgRectangle10} />
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle10} />
               </div>
             </div>
           </div>
@@ -320,7 +320,7 @@ function Group7() {
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-                <img alt="" className="absolute h-[-196.7%] left-full max-w-none top-[114.27%] w-[-100%]" src={imgRectangle13} />
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle13} />
               </div>
             </div>
           </div>
@@ -331,7 +331,7 @@ function Group7() {
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-                <img alt="" className="absolute h-[-191.29%] left-full max-w-none top-[100.99%] w-[-100%]" src={imgRectangle14} />
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle14} />
               </div>
             </div>
           </div>
@@ -405,7 +405,7 @@ function Group8() {
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-                <img alt="" className="absolute h-[-138.35%] left-full max-w-none top-[98.9%] w-[-100%]" src={imgRectangle15} />
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle15} />
               </div>
             </div>
           </div>
@@ -425,7 +425,7 @@ function Group8() {
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-                <img alt="" className="absolute h-[-196.77%] left-[99.13%] max-w-none top-[115.55%] w-[-100%]" src={imgRectangle17} />
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle17} />
               </div>
             </div>
           </div>
@@ -436,7 +436,7 @@ function Group8() {
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-                <img alt="" className="absolute h-[-130.85%] left-[99.13%] max-w-none top-[100.94%] w-[-100%]" src={imgRectangle18} />
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle18} />
               </div>
             </div>
           </div>
@@ -520,7 +520,7 @@ function Cosplay() {
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-                <img alt="" className="absolute h-[-143.75%] left-[98.67%] max-w-none top-[100.47%] w-[-100%]" src={imgRectangle19} />
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle19} />
               </div>
             </div>
           </div>
@@ -531,7 +531,7 @@ function Cosplay() {
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-                <img alt="" className="absolute h-[-112.97%] left-[98.45%] max-w-none top-[100.75%] w-[-100%]" src={imgRectangle20} />
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle20} />
               </div>
             </div>
           </div>
@@ -542,7 +542,7 @@ function Cosplay() {
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-                <img alt="" className="absolute h-[-138.13%] left-[100.92%] max-w-none top-[107.41%] w-[-100%]" src={imgRectangle21} />
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle21} />
               </div>
             </div>
           </div>
@@ -553,7 +553,7 @@ function Cosplay() {
           <div className="h-[295px] relative w-[326.517px]">
             <div className="absolute inset-0 rounded-[20px]">
               <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-                <img alt="" className="absolute h-[-166.03%] left-[98.88%] max-w-none top-[103.25%] w-[-100%]" src={imgRectangle22} />
+                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle22} />
               </div>
             </div>
           </div>
@@ -606,6 +606,9 @@ function Group14() {
             <path d={svgPaths.p4e06d00} fill="var(--fill-0, #E0C576)" id="Vector 2" stroke="var(--stroke-0, #E2C379)" />
           </svg>
         </div>
+      </div>
+      <div className="absolute left-[160.93px] size-[60.727px] top-[3166.02px]" data-name="basil:whatsapp-solid">
+        <MaskGroup />
       </div>
       <div className="absolute left-[302.27px] size-[60.727px] top-[3167.27px]" data-name="ri:instagram-fill" />
       <p className="[word-break:break-word] absolute font-['Secular_One:Regular',sans-serif] h-[58px] leading-[normal] left-[161px] not-italic text-[40px] text-white top-[3058px] w-[96px]">WCR</p>

@@ -5,21 +5,21 @@ import imgRectangle88 from "./1dc92711e010a827b9a98e44a7998a1238c1f6d0.png";
 function Container() {
   return (
     <div className="absolute contents left-[120px] top-[162px]" data-name="container">
-      <div className="absolute flex h-[525px] items-center justify-center left-[125px] top-[204px] w-[897px]">
-        <div className="absolute h-[525px] left-[125px] top-[204px] w-[897px]">
-          <div className="h-[525px] relative w-[897px]">
-            <div className="absolute inset-0 rounded-[20px]">
-              <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
-                <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle8} />
-              </div>
-            </div>
+      <div className="absolute h-[525px] left-[125px] top-[204px] w-[897px]">
+        <div className="h-[525px] relative w-[897px]">
+          <div className="absolute inset-0 rounded-[20px]">
+            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[20px] size-full" src={imgRectangle8} />
           </div>
         </div>
       </div>
-      <p className="[word-break:break-word] absolute font-['Montserrat:SemiBold',sans-serif] font-semibold h-[57px] leading-[normal] left-[120px] text-[36px] text-black top-[calc(50%-984px)] w-[468px]">Kebaya Janggan Merah</p>
-      <p className="-translate-x-1/2 [word-break:break-word] absolute font-['Montserrat:SemiBold',sans-serif] font-semibold leading-[normal] left-[293.5px] text-[24px] text-black text-center top-[calc(50%-984px)] w-[329px]">Baju Mc / Penyanyi / Adat</p>
+      <p className="[word-break:break-word] absolute font-['Montserrat:SemiBold',sans-serif] font-semibold leading-[normal] left-[120px] text-[20px] text-black top-[162px] w-[468px]">Baju Mc / Penyanyi / Adat</p>
+      {/* FIX: top-[190px] -> top-[745px]. Sebelumnya judul berada di atas gambar
+          (gambar: top 204px s/d 729px), sehingga judul dan kategori menimpa gambar.
+          Sekarang judul diletakkan tepat setelah gambar berakhir (204 + 525 = 729),
+          selaras dengan posisi deskripsi (top-[809px]) di bawahnya. */}
+      <p className="[word-break:break-word] absolute font-['Montserrat:SemiBold',sans-serif] font-semibold h-[57px] leading-[normal] left-[120px] text-[36px] text-black top-[745px] w-[700px]">Kebaya Janggan Merah</p>
       <div className="[word-break:break-word] absolute font-['Open_Sans:Italic',sans-serif] font-normal italic leading-[0] left-[125px] text-[24px] text-black top-[809px] whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>
-        <p className="leading-[normal] mb-0">Baju ini berdesain elegan dan mewah dengan bahan utama Beludru Merah Maroon dan detail kerah tinggi (Mandarin Collar).</p>
+        <p className="leading-[normal] mb-0">Baju ini berdesain elegan dan mewah.</p>
         <p className="leading-[normal] mb-0">Kelengkapan Sewa</p>
         <ul className="list-disc">
           <li className="mb-0 ms-[36px]">

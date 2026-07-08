@@ -1,9 +1,9 @@
-import "../styles/login.css";
+import "../../seller/styles/login.css";
 import { useState } from "react";
-import { LogoMark } from "./LogoMark";
+import { LogoMark } from "../../seller/components/LogoMark";
 
-const VALID_EMAIL    = "seller@wcr.com";
-const VALID_PASSWORD = "seller123";
+const VALID_EMAIL = "user@wcr.id";
+const VALID_PASSWORD = "user123";
 
 function EnvelopeIcon() {
   return (
@@ -37,15 +37,24 @@ function AccountIcon() {
   );
 }
 
-export default function Login({ onCreateAccount, onLogin, onBack }: { onCreateAccount?: () => void; onLogin?: () => void; onBack?: () => void }) {
-  const [email, setEmail]       = useState("");
+/* Halaman login khusus Pengguna (customer). */
+export default function LoginPage({
+  onLogin,
+  onBack,
+  onGoToSeller,
+}: {
+  onLogin: () => void;
+  onBack?: () => void;
+  onGoToSeller?: () => void;
+}) {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError]       = useState("");
+  const [error, setError] = useState("");
 
   function handleLogin() {
     if (email === VALID_EMAIL && password === VALID_PASSWORD) {
       setError("");
-      onLogin?.();
+      onLogin();
     } else {
       setError("Email atau password salah. Silakan coba lagi.");
     }
@@ -112,7 +121,7 @@ export default function Login({ onCreateAccount, onLogin, onBack }: { onCreateAc
             Mari bergabung bersama kami! Jangkau lebih banyak pelanggan dengan WarCosRent. Gratis tanpa biaya apapun!
           </p>
           <div className="login-card__actions">
-            <button className="login-card__btn" type="button" onClick={onCreateAccount}>BUAT AKUN</button>
+            <button className="login-card__btn" type="button" onClick={onGoToSeller}>MASUK SEBAGAI PEMILIK</button>
           </div>
         </section>
       </main>

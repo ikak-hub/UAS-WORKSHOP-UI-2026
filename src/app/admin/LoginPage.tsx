@@ -1,10 +1,25 @@
 import { useState } from "react";
 import { LogoMark } from "../seller/components/LogoMark";
 
+const VALID_EMAIL = "admin@wcr.id";
+const VALID_PASSWORD = "admin123";
+
 /* Halaman login khusus Admin.*/
 export default function LoginPage({ onLogin }: { onLogin: () => void }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+const handleLogin = () => {
+    console.log("EMAIL:", JSON.stringify(email));
+    console.log("PASSWORD:", JSON.stringify(password));
+    if (email === VALID_EMAIL && password === VALID_PASSWORD) {
+      setError("");
+      onLogin();
+    } else {
+      setError("Email atau password salah. Silakan coba lagi.");
+    }
+  };
 
   return (
     <div style={{ minHeight: "100vh", background: "#fff", display: "flex", flexDirection: "column" }}>
@@ -47,6 +62,7 @@ export default function LoginPage({ onLogin }: { onLogin: () => void }) {
             MASUK KE AKUN ANDA
           </p>
 
+          <form onSubmit={e => { e.preventDefault(); handleLogin(); }}>
           {/* Email */}
           <div style={{ display: "flex", alignItems: "center", marginBottom: 20 }}>
             <div style={{ background: "#06121A", borderRadius: "20px 0 0 20px", width: 57, height: 41, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
@@ -58,13 +74,13 @@ export default function LoginPage({ onLogin }: { onLogin: () => void }) {
               type="email"
               placeholder="Enter your email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={e => { setEmail(e.target.value); setError(""); }}
               style={{ flex: 1, height: 41, border: "none", borderRadius: "0 20px 20px 0", padding: "0 20px", fontFamily: "'Poppins', sans-serif", fontSize: 16, outline: "none" }}
             />
           </div>
 
           {/* Password */}
-          <div style={{ display: "flex", alignItems: "center", marginBottom: 64 }}>
+          <div style={{ display: "flex", alignItems: "center", marginBottom: error ? 8 : 64 }}>
             <div style={{ background: "#000", borderRadius: "20px 0 0 20px", width: 57, height: 41, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
               <svg width={20} height={22} viewBox="0 0 31 30" fill="white">
                 <path d="M17.5 14.6a4.2 4.2 0 014.2 4.2 4.2 4.2 0 01-4.2 4.2 4.2 4.2 0 01-4.2-4.2 4.2 4.2 0 014.2-4.2m0 2.2a2 2 0 000 4 2 2 0 000-4zm11.3-6.7H25v-3.4A8.8 8.8 0 0017.5 0a8.8 8.8 0 00-8.8 6.7v3.4H5a2.3 2.3 0 00-2.2 2.3v14.3a2.3 2.3 0 002.2 2.3h23.8a2.3 2.3 0 002.2-2.3V12.4a2.3 2.3 0 00-2.2-2.3zm-18.8-3.4a6.5 6.5 0 016.5-4.5 6.5 6.5 0 016.5 4.5v3.4H10v-3.4zm18.8 20H5V12.4h23.8v14.3z" />
@@ -74,17 +90,24 @@ export default function LoginPage({ onLogin }: { onLogin: () => void }) {
               type="password"
               placeholder="******************"
               value={password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={e => { setPassword(e.target.value); setError(""); }}
               style={{ flex: 1, height: 41, border: "none", borderRadius: "0 20px 20px 0", padding: "0 20px", fontFamily: "'Poppins', sans-serif", fontSize: 16, outline: "none" }}
             />
           </div>
 
+          {error && (
+            <p style={{ color: "#ffe1e1", background: "rgba(0,0,0,0.15)", borderRadius: 12, padding: "8px 14px", fontSize: 14, fontFamily: "'Poppins', sans-serif", textAlign: "center", margin: "0 0 24px" }}>
+              ⚠️ {error}
+            </p>
+          )}
+
           <button
-            onClick={onLogin}
+            type="submit"
             style={{ width: "100%", height: 54, background: "#fff", border: "none", borderRadius: 20, fontFamily: "'Open Sans', sans-serif", fontWeight: 800, fontSize: 36, cursor: "pointer", color: "#000", marginBottom: 12 }}
           >
             LOGIN
           </button>
+          </form>
           <p style={{ textAlign: "center", margin: 0 }}>
             <button style={{ background: "none", border: "none", fontFamily: "'Lato', sans-serif", fontWeight: 800, fontSize: 16, color: "#000", textDecoration: "underline", cursor: "pointer" }}>
               Lupa password

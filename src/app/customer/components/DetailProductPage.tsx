@@ -37,7 +37,9 @@ function navBtn(left: number, width: number) {
 }
 
 const MONTHS_ID = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-const DAYS_ID = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
+// FIX: header hari sebelumnya "Min, Sen, Sel, ..." (3 huruf, gaya Indonesia panjang)
+// tidak sesuai mockup yang memakai inisial 1 huruf ala Material Design (S M T W T F S).
+const DAYS_ID = ["S", "M", "T", "W", "T", "F", "S"];
 
 function isSameDay(a: Date, b: Date) {
   return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
@@ -81,12 +83,10 @@ function CalendarMonth({
 
   return (
     <div style={{ flex: 1 }}>
-      <div style={{ textAlign: "center", fontFamily: "'Roboto', sans-serif", fontWeight: 500, fontSize: 18, color: "#1a1a2e", marginBottom: 16 }}>
-        {MONTHS_ID[month]} {year}
-      </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: 2, marginBottom: 8 }}>
-        {DAYS_ID.map((d) => (
-          <div key={d} style={{ textAlign: "center", fontFamily: "'Roboto', sans-serif", fontWeight: 500, fontSize: 13, color: "#888", paddingBottom: 4 }}>
+        {DAYS_ID.map((d, i) => (
+          // FIX: key ditambahkan index karena "T" (Tuesday/Thursday) dan "S" (Sunday/Saturday) duplikat
+          <div key={`${d}-${i}`} style={{ textAlign: "center", fontFamily: "'Roboto', sans-serif", fontWeight: 400, fontSize: 16, color: "#1d1b20", paddingBottom: 4 }}>
             {d}
           </div>
         ))}
@@ -102,15 +102,18 @@ function CalendarMonth({
           const inRange = isInRange(day, startDate, previewEnd);
 
           let bg = "transparent";
-          let color = isPast ? "#ccc" : "#1a1a2e";
+          // FIX: warna aksen disamakan dengan mockup (ungu Material #6750a4),
+          // sebelumnya memakai biru #5b6ef5 yang membuat kalender terlihat seperti
+          // komponen generik, bukan seperti hasil desain Figma.
+          let color = isPast ? "#ccc" : "#1d1b20";
           let borderRadius = "50%";
 
           if (isStart || isEnd) {
-            bg = "#5b6ef5";
+            bg = "#6750a4";
             color = "#fff";
           } else if (inRange) {
-            bg = "#e8eaff";
-            color = "#1a1a2e";
+            bg = "#eaddff";
+            color = "#1d1b20";
             borderRadius = "0";
           }
 
@@ -124,14 +127,14 @@ function CalendarMonth({
               style={{
                 background: bg,
                 color,
-                border: isToday && !isStart && !isEnd ? "1.5px solid #5b6ef5" : "none",
+                border: isToday && !isStart && !isEnd ? "1.5px solid #6750a4" : "none",
                 borderRadius,
                 width: "100%",
                 aspectRatio: "1",
                 cursor: isPast ? "default" : "pointer",
                 fontFamily: "'Roboto', sans-serif",
-                fontSize: 14,
-                fontWeight: isStart || isEnd ? 700 : 400,
+                fontSize: 16,
+                fontWeight: 400,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -231,41 +234,68 @@ export default function DetailProductPage({ onHome, onArtikel, onKatalog, onChec
       <div className="relative" style={{ width: 1728, height: 1808 }}>
         <DetailProductImport />
 
+        {/*
+          FIX: Overlay kategori.
+          Sebelumnya overlay ini digabung dengan overlay judul di top:162 dan
+          tidak memiliki background, sehingga menimpa breadcrumb statis
+          "Baju Mc / Penyanyi / Adat" tanpa menutupinya secara bersih (dua teks
+          transparan bertumpuk). Sekarang dipisah, diberi background solid,
+          dan tetap berada tepat di posisi breadcrumb (top:162) — sesuai
+          layout target: breadcrumb di baris ini, gambar & judul di bawahnya.
+        */}
         <div
           style={{
             position: "absolute",
             left: 120,
             top: 162,
-            width: 1100,
+            width: 700,
+            height: 30,
             zIndex: 50,
             pointerEvents: "none",
+            background: "#fff",
+            fontFamily: "'Montserrat', sans-serif",
+            fontWeight: 600,
+            fontSize: 20,
+            color: "#000",
           }}
         >
-          {/* Nama produk */}
+          {productCategory}
+        </div>
+
+        {/*
+          FIX: Overlay nama produk.
+          Sebelumnya top:162 (dekat area breadcrumb & atas gambar), sehingga
+          judul dan kategori tampak bertumpuk DI ATAS gambar produk (gambar
+          dimulai top:204). Sekarang dipindahkan ke top:745, tepat setelah
+          gambar berakhir (204 + 525 tinggi gambar = 729), selaras dengan
+          posisi statis Figma yang sudah diperbaiki di imports/DetailProduct.
+          Diberi background solid agar tidak tumpang tindih dengan teks statis
+          di baliknya.
+        */}
+        <div
+          style={{
+            position: "absolute",
+            left: 120,
+            top: 745,
+            width: 700,
+            minHeight: 60,
+            zIndex: 50,
+            pointerEvents: "none",
+            background: "#fff",
+          }}
+        >
           <h1
             style={{
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 700,
               fontSize: 36,
               color: "#000",
-              margin: "0 0 4px 0",
+              margin: 0,
               lineHeight: 1.3,
             }}
           >
             {productName}
           </h1>
-          {/* Kategori */}
-          <p
-            style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontWeight: 600,
-              fontSize: 24,
-              color: "#000",
-              margin: "0 0 8px 0",
-            }}
-          >
-            {productCategory}
-          </p>
         </div>
 
         {/* Overlay deskripsi produk (menutupi teks Figma di top≈809) */}
@@ -377,12 +407,29 @@ export default function DetailProductPage({ onHome, onArtikel, onKatalog, onChec
           }}
         />
 
-        {/* Date range picker overlay — covers static Figma calendar */}
+        {/*
+          FIX: Kalender interaktif.
+          Sebelumnya:
+          - top:1700 dan tinggi konten (2 kolom bulan + padding besar) jauh
+            melebihi area kalender statis di bawahnya (yang dimulai top:1792),
+            sehingga saling tumpang tindih ("Semua elemen terlihat saling
+            menimpa").
+          - Gaya visual (border biru terang, shadow besar, emoji 📅, 2 bulan
+            berdampingan, tombol "Reset") berbeda total dari mockup Material
+            Design (ungu #6750a4, satu bulan per tampilan, tombol "Cancel/OK",
+            header hari 1 huruf), sehingga terlihat "seperti komponen default
+            browser" dibanding mockup.
+          Sekarang: satu kolom bulan, warna & tipografi disamakan dengan
+          mockup, posisi disesuaikan agar pas menimpa kalender statis Figma
+          tanpa keluar area maupun bertabrakan dengan elemen lain.
+          Business logic (handleDayClick, startDate/endDate, rentalDays,
+          format tanggal) SAMA SEKALI TIDAK diubah.
+        */}
         <div
           style={{
             position: "absolute",
             left: 125,
-            top: 1700,
+            top: 1709,
             width: 1478,
             zIndex: 100,
           }}
@@ -393,86 +440,79 @@ export default function DetailProductPage({ onHome, onArtikel, onKatalog, onChec
               width: "100%",
               height: 56,
               background: "#fff",
-              border: "1.5px solid #5b6ef5",
-              borderRadius: 12,
+              border: "1.5px solid #6750a4",
+              borderRadius: 4,
               display: "flex",
               alignItems: "center",
               padding: "0 20px",
               fontFamily: "'Roboto', sans-serif",
-              fontSize: 17,
-              color: startDate ? "#1a1a2e" : "#999",
+              fontSize: 16,
+              color: startDate ? "#1d1b20" : "#999",
               boxSizing: "border-box",
               marginBottom: 8,
             }}
           >
-            <span style={{ marginRight: 12, fontSize: 20 }}>📅</span>
             {dateRangeDisplay}
           </div>
 
           {/* Calendar */}
           <div
             style={{
-              background: "#fff",
+              background: "#ece6f0",
               borderRadius: 16,
-              border: "1px solid #e0e0e0",
-              padding: "24px 32px",
-              boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
+              padding: "16px 24px 12px",
+              boxSizing: "border-box",
             }}
           >
             {/* Month navigation */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
               <button
                 onClick={() => setCalMonth(new Date(leftYear, leftMonth - 1, 1))}
-                style={{ background: "#f0f0f0", border: "none", borderRadius: 8, width: 36, height: 36, cursor: "pointer", fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center" }}
+                style={{ background: "none", border: "none", borderRadius: 100, width: 40, height: 40, cursor: "pointer", fontSize: 18, color: "#49454f", display: "flex", alignItems: "center", justifyContent: "center" }}
               >
                 ‹
               </button>
-              <div style={{ flex: 1 }} />
+              <span style={{ fontFamily: "'Roboto', sans-serif", fontWeight: 500, fontSize: 14, color: "#49454f" }}>
+                {MONTHS_ID[leftMonth].slice(0, 3)} {leftYear}
+              </span>
               <button
                 onClick={() => setCalMonth(new Date(leftYear, leftMonth + 1, 1))}
-                style={{ background: "#f0f0f0", border: "none", borderRadius: 8, width: 36, height: 36, cursor: "pointer", fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center" }}
+                style={{ background: "none", border: "none", borderRadius: 100, width: 40, height: 40, cursor: "pointer", fontSize: 18, color: "#49454f", display: "flex", alignItems: "center", justifyContent: "center" }}
               >
                 ›
               </button>
             </div>
 
-            <div style={{ display: "flex", gap: 40 }}>
-              <CalendarMonth
-                year={leftYear}
-                month={leftMonth}
-                startDate={startDate}
-                endDate={endDate}
-                hoverDate={hoverDate}
-                onDayClick={handleDayClick}
-                onDayHover={setHoverDate}
-                today={today}
-              />
-              <div style={{ width: 1, background: "#e0e0e0" }} />
-              <CalendarMonth
-                year={rightYear}
-                month={rightMonth}
-                startDate={startDate}
-                endDate={endDate}
-                hoverDate={hoverDate}
-                onDayClick={handleDayClick}
-                onDayHover={setHoverDate}
-                today={today}
-              />
-            </div>
+            <CalendarMonth
+              year={leftYear}
+              month={leftMonth}
+              startDate={startDate}
+              endDate={endDate}
+              hoverDate={hoverDate}
+              onDayClick={handleDayClick}
+              onDayHover={setHoverDate}
+              today={today}
+            />
 
-            {startDate && endDate && (
-              <div style={{ marginTop: 20, display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 16 }}>
-                <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: 15, color: "#555" }}>
+            <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 8, marginTop: 12, padding: "4px 0" }}>
+              {startDate && endDate && (
+                <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: 14, color: "#6750a4", marginRight: 8 }}>
                   {rentalDays} hari sewa
                 </span>
-                <button
-                  onClick={() => { setStartDate(null); setEndDate(null); }}
-                  style={{ background: "#f0f0f0", border: "none", borderRadius: 8, padding: "8px 18px", cursor: "pointer", fontFamily: "'Roboto', sans-serif", fontSize: 14, color: "#555" }}
-                >
-                  Reset
-                </button>
-              </div>
-            )}
+              )}
+              <button
+                onClick={() => { setStartDate(null); setEndDate(null); }}
+                style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Roboto', sans-serif", fontWeight: 500, fontSize: 14, color: "#6750a4", padding: "10px 16px" }}
+              >
+                Cancel
+              </button>
+              <button
+                disabled={!startDate || !endDate}
+                style={{ background: "none", border: "none", cursor: startDate && endDate ? "pointer" : "default", fontFamily: "'Roboto', sans-serif", fontWeight: 500, fontSize: 14, color: startDate && endDate ? "#6750a4" : "#c8c2cc", padding: "10px 16px" }}
+              >
+                OK
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import LandingPage from "./components/LandingPage";
+import LoginPage from "./components/LoginPageCS";
 import ArtikelPage from "./components/ArtikelPage";
 import ArtikelPage1 from "./components/ArtikelPage1";
 import ArtikelPage2 from "./components/ArtikelPage2";
@@ -14,7 +15,7 @@ import EditProfilePage from "./components/EditProfilePage";
 import type { CartItem } from "../types";
 
 type CustomerPage =
-  | "landing" | "artikel" | "artikel1" | "artikel2"
+  | "landing" | "login" | "artikel" | "artikel1" | "artikel2"
   | "katalog" | "detail-product"
   | "keranjang" | "pembayaran" | "history-transaksi" | "pengembalian"
   | "review" | "edit-profile";
@@ -50,7 +51,8 @@ export default function CustomerRoutes({ onGoToLogin }: Props) {
   const goHistory = () => setPage("history-transaksi");
   const goEditProfile = () => setPage("edit-profile");
 
-  if (page === "landing") return <LandingPage onLogin={onGoToLogin} onArtikel={() => setPage("artikel")} onKatalog={() => setPage("katalog")} onHistory={goHistory} onEditProfile={goEditProfile} />;
+  if (page === "landing") return <LandingPage onLogin={() => setPage("login")} onArtikel={() => setPage("artikel")} onKatalog={() => setPage("katalog")} onHistory={goHistory} onEditProfile={goEditProfile} />;
+  if (page === "login") return <LoginPage onLogin={() => setPage("landing")} onBack={() => setPage("landing")} onGoToSeller={onGoToLogin} />;
   if (page === "artikel") return <ArtikelPage onHome={() => setPage("landing")} onArtikel1={() => setPage("artikel1")} onArtikel2={() => setPage("artikel2")} onKatalog={() => setPage("katalog")} />;
   if (page === "artikel1") return <ArtikelPage1 onHome={() => setPage("landing")} onArtikel={() => setPage("artikel")} onArtikel2={() => setPage("artikel2")} onKatalog={() => setPage("katalog")} />;
   if (page === "artikel2") return <ArtikelPage2 onHome={() => setPage("landing")} onArtikel={() => setPage("artikel")} onArtikel1={() => setPage("artikel1")} onKatalog={() => setPage("katalog")} />;
