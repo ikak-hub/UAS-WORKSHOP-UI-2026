@@ -46,7 +46,7 @@ function RootRouter() {
       <Route
         path="/pengguna/*"
         element={
-          <CustomerRoutes onGoToLogin={() => (window.location.href = "/pengguna")} />
+          <CustomerRoutes onGoToLogin={() => (window.location.href = "/pemilik")} />
         }
       />
 
