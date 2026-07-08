@@ -1,61 +1,75 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider, useAuth } from "./shared/context/AuthContext";
+import { useState } from "react";
 
-// Admin
-import AdminLoginPage from "../app/admin/LoginPage";
 import AdminApp from "../app/admin/AdminApp";
-
-// Seller (pemilik) — pakai komponen yang sudah ada
+import AdminLoginPage from "../app/admin/LoginPage";
 import SellerRoutes from "../app/seller/SellerRoutes";
-
-// Customer (pengguna) — pakai komponen yang sudah ada
 import CustomerRoutes from "../app/customer/CustomerRoutes";
+import CustomerLoginPage from "../app/customer/components/LoginPageCS"; // <-- import ini
 
-// ── Guard: halaman admin hanya bisa diakses kalau role === "admin" ──
-function AdminGuard() {
-  const { user, login } = useAuth();
+type ShowLogin = "none" | "customer" | "admin-seller";
 
-  if (!user || user.role !== "admin") {
+const ADMIN_CREDENTIALS = [
+  { email: "admin@wcr.id",   password: "admin123",   role: "admin"   as const },
+  { email: "pemilik@wcr.id", password: "pemilik123", role: "pemilik" as const },
+];
+
+function RootRouter() {
+  const { user, login, logout } = useAuth();
+  const [showLogin, setShowLogin] = useState<ShowLogin>("none");
+  const [adminError, setAdminError] = useState("");
+
+  // Sudah login admin
+  if (user?.role === "admin") return <AdminApp />;
+
+  // Sudah login pemilik
+  if (user?.role === "pemilik") return <SellerRoutes onBackToCustomer={logout} />;
+
+  // Tampilkan login admin/pemilik
+  if (showLogin === "admin-seller") {
     return (
       <AdminLoginPage
-        onLogin={() =>
-          login({ role: "admin", email: "admin@wcr.id" })
-        }
+        onLogin={(email: string, password: string) => {
+          const found = ADMIN_CREDENTIALS.find(
+            c => c.email === email && c.password === password
+          );
+          if (found) {
+            setAdminError("");
+            setShowLogin("none");
+            login({ role: found.role, email: found.email });
+          } else {
+            setAdminError("Email atau password salah.");
+          }
+        }}
+        errorMessage={adminError}
       />
     );
   }
-  return <AdminApp />;
-}
 
-// ── Root: pisah zona berdasarkan URL prefix ──
-function RootRouter() {
+  // Tampilkan login customer
+  if (showLogin === "customer") {
+    return (
+      <CustomerLoginPage
+        onLogin={() => {
+          // CustomerLoginPage sudah handle validasi sendiri
+          // Setelah login berhasil, set user sebagai pengguna
+          login({ role: "pengguna", email: "user@wcr.id" });
+          setShowLogin("none");
+        }}
+        onBack={() => setShowLogin("none")}
+        onGoToSeller={() => setShowLogin("admin-seller")}
+      />
+    );
+  }
+
+  // Default — halaman customer
   return (
-    <Routes>
-      {/* Zona admin — login page sendiri, terpisah */}
-      <Route path="/admin/*" element={<AdminGuard />} />
-
-      {/* Zona pemilik */}
-      <Route
-        path="/pemilik/*"
-        element={
-          <SellerRoutes onBackToCustomer={() => (window.location.href = "/pengguna")} />
-        }
-      />
-
-      {/* Zona pengguna (customer) — default landing */}
-      <Route
-        path="/pengguna/*"
-        element={
-          <CustomerRoutes onGoToLogin={() => (window.location.href = "/pemilik")} />
-        }
-      />
-
-      {/* Root redirect ke pengguna */}
-      <Route path="/" element={<Navigate to="/pengguna" replace />} />
-
-      {/* Fallback */}
-      <Route path="*" element={<Navigate to="/pengguna" replace />} />
-    </Routes>
+    <CustomerRoutes
+      onGoToLogin={() => {
+        setShowLogin("customer");
+      }}
+    />
   );
 }
 

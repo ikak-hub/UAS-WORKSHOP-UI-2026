@@ -1,9 +1,10 @@
+import { useState } from "react";
 import AdminNavbar from "../AdminNavbar";
 import AdminPageHeader from "./AdminPageHeader";
 
 function TrashIcon() {
   return (
-    <svg width={26} height={30} viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+    <svg width={32} height={36} viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
       <polyline points="3 6 5 6 21 6" />
       <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" />
       <path d="M10 11v6M14 11v6" />
@@ -12,28 +13,143 @@ function TrashIcon() {
   );
 }
 
-function FolderCard({ label, onOpen, onDelete }: { label: string; onOpen: () => void; onDelete: () => void }) {
+function FolderCard({
+  label,
+  onOpen,
+  onDelete,
+}: {
+  label: string;
+  onOpen: () => void;
+  onDelete: () => void;
+}) {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <div style={{ position: "relative", cursor: "pointer" }} onClick={onOpen}>
-      <div style={{ width: "100%", background: "#F5B73D", borderRadius: "0 18px 18px 18px", minHeight: 280, position: "relative", paddingTop: 56 }}>
-        <div style={{ position: "absolute", top: -28, left: 0, width: 220, height: 30, background: "#F5B73D", borderRadius: "14px 14px 0 0" }} />
-        <p style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 800, fontSize: 17, color: "#000", padding: "0 22px", position: "absolute", top: -48, left: 0 }}>
-          {label}
-        </p>
-        <div style={{ position: "absolute", bottom: 20, right: 22 }}>
+    <>
+      <style>{`
+        .folder-card-wrap {
+          position: relative;
+          cursor: pointer;
+          user-select: none;
+        }
+        .folder-tab {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 52%;
+          height: 34px;
+          background: #F5B73D;
+          border-radius: 16px 16px 0 0;
+          display: flex;
+          align-items: center;
+          padding-left: 18px;
+          z-index: 1;
+        }
+        .folder-tab span {
+          font-family: 'Open Sans', sans-serif;
+          font-weight: 800;
+          font-size: 14px;
+          color: #000;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .folder-body {
+          margin-top: 26px;
+          border-radius: 0 18px 18px 18px;
+          min-height: 280px;
+          position: relative;
+          transition: background 0.15s, box-shadow 0.15s;
+        }
+        .folder-trash {
+          position: absolute;
+          bottom: 20px;
+          right: 22px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 4px;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .folder-trash:hover {
+          background: rgba(0,0,0,0.08);
+        }
+
+        /* Tablet */
+        @media (max-width: 768px) {
+          .folder-tab {
+            height: 28px;
+          }
+          .folder-tab span {
+            font-size: 12px;
+          }
+          .folder-body {
+            min-height: 200px;
+            margin-top: 22px;
+            border-radius: 0 14px 14px 14px;
+          }
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+          .folder-tab {
+            height: 24px;
+            width: 60%;
+          }
+          .folder-tab span {
+            font-size: 10px;
+          }
+          .folder-body {
+            min-height: 150px;
+            margin-top: 18px;
+            border-radius: 0 12px 12px 12px;
+          }
+          .folder-trash svg {
+            width: 24px;
+            height: 28px;
+          }
+        }
+      `}</style>
+
+      <div
+        className="folder-card-wrap"
+        onClick={onOpen}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        onKeyDown={e => e.key === "Enter" && onOpen()}
+        tabIndex={0}
+        role="button"
+        aria-label={label}
+      >
+        {/* Tab atas */}
+        <div className="folder-tab">
+          <span>{label}</span>
+        </div>
+
+        {/* Body folder */}
+        <div
+          className="folder-body"
+          style={{
+            background: hovered ? "#E8A82A" : "#F5B73D",
+            boxShadow: hovered
+              ? "0 6px 20px rgba(245,183,61,0.4)"
+              : "0 2px 8px rgba(0,0,0,0.08)",
+          }}
+        >
+          {/* Trash button */}
           <button
-            onClick={e => {
-              e.stopPropagation();
-              onDelete();
-            }}
-            style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}
+            className="folder-trash"
+            onClick={e => { e.stopPropagation(); onDelete(); }}
             aria-label={`Hapus ${label}`}
           >
             <TrashIcon />
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -59,24 +175,57 @@ export default function KelolaPenggunaFolderPage({
   };
 
   return (
-    <div style={{ minHeight: "100vh", background: "#fff", display: "flex", flexDirection: "column" }}>
-      <AdminNavbar onLogout={onLogout} />
-      <AdminPageHeader title="Kelola Pengguna" onBack={onBack} />
+    <>
+      <style>{`
+        .kelola-main {
+          padding: 40px 48px 80px;
+        }
+        .kelola-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 48px;
+          max-width: 1100px;
+        }
 
-      <main style={{ padding: "40px 40px 80px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 36, maxWidth: 1100 }}>
-          <FolderCard
-            label="FOLDER PENGGUNA"
-            onOpen={onOpenPengguna}
-            onDelete={() => handleClear("Folder Pengguna", onClearPengguna)}
-          />
-          <FolderCard
-            label="FOLDER PEMILIK"
-            onOpen={onOpenPemilik}
-            onDelete={() => handleClear("Folder Pemilik", onClearPemilik)}
-          />
-        </div>
-      </main>
-    </div>
+        @media (max-width: 768px) {
+          .kelola-main {
+            padding: 28px 24px 60px;
+          }
+          .kelola-grid {
+            gap: 28px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .kelola-main {
+            padding: 16px 12px 40px;
+          }
+          .kelola-grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
+          }
+        }
+      `}</style>
+
+      <div style={{ minHeight: "100vh", background: "#fff", display: "flex", flexDirection: "column" }}>
+        <AdminNavbar showHome onHome={onBack} onLogout={onLogout} />
+        <AdminPageHeader title="Kelola Pengguna" onBack={onBack} />
+
+        <main className="kelola-main">
+          <div className="kelola-grid">
+            <FolderCard
+              label="FOLDER PENGGUNA"
+              onOpen={onOpenPengguna}
+              onDelete={() => handleClear("Folder Pengguna", onClearPengguna)}
+            />
+            <FolderCard
+              label="FOLDER PEMILIK"
+              onOpen={onOpenPemilik}
+              onDelete={() => handleClear("Folder Pemilik", onClearPemilik)}
+            />
+          </div>
+        </main>
+      </div>
+    </>
   );
 }
