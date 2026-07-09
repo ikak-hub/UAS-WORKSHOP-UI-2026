@@ -32,10 +32,6 @@ function Group11() {
           </svg>
         </div>
       </div>
-      <div className="absolute left-[160.93px] size-[60.727px] top-[3166.02px]" data-name="basil:whatsapp-solid">
-        <MaskGroup />
-      </div>
-      <div className="absolute left-[302.27px] size-[60.727px] top-[3167.27px]" data-name="ri:instagram-fill" />
       <p className="[word-break:break-word] absolute font-['Secular_One:Regular',sans-serif] h-[58px] leading-[normal] left-[161px] not-italic text-[40px] text-white top-[3058px] w-[96px]">WCR</p>
     </div>
   );
