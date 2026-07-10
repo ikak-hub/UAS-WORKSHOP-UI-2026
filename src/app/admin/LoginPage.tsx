@@ -1,10 +1,22 @@
 import { useState } from "react";
 import { LogoMark } from "../seller/components/LogoMark";
 
-/* Halaman login khusus Admin.*/
-export default function LoginPage({ onLogin }: { onLogin: () => void }) {
+/* Halaman login untuk Admin & Pemilik (dibedakan lewat prop `heading`). */
+export default function LoginPage({
+  onLogin,
+  errorMessage,
+  heading = "LOGIN",
+}: {
+  onLogin: (email: string, password: string) => void;
+  errorMessage?: string;
+  heading?: string;
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  function handleSubmit() {
+    onLogin(email, password);
+  }
 
   return (
     <div style={{ minHeight: "100vh", background: "#fff", display: "flex", flexDirection: "column" }}>
@@ -20,18 +32,6 @@ export default function LoginPage({ onLogin }: { onLogin: () => void }) {
             WardrobeCostumRental
           </span>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <svg width={56} height={56} viewBox="0 0 24 24" fill="white">
-            <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 5a3 3 0 110 6 3 3 0 010-6zm0 14a8 8 0 01-6.4-3.2c.03-2.12 4.27-3.3 6.4-3.3 2.13 0 6.37 1.18 6.4 3.3A8 8 0 0112 21z" />
-          </svg>
-          <button style={{
-            background: "#FFFAFA", border: "none", borderRadius: 10,
-            padding: "10px 22px", fontFamily: "'Montserrat', sans-serif",
-            fontWeight: 600, fontSize: 16, cursor: "pointer",
-          }}>
-            Logout
-          </button>
-        </div>
       </nav>
 
       {/* Form */}
@@ -41,7 +41,7 @@ export default function LoginPage({ onLogin }: { onLogin: () => void }) {
           padding: "57px 100px 76px", maxWidth: 540, width: "100%",
         }}>
           <h1 style={{ color: "#fff", textAlign: "center", fontFamily: "'Open Sans', sans-serif", fontWeight: 800, fontSize: 48, margin: "0 0 12px" }}>
-            LOGIN
+            {heading}
           </h1>
           <p style={{ color: "#fff", textAlign: "center", fontFamily: "'Open Sans', sans-serif", fontWeight: 800, fontSize: 16, margin: "0 0 32px" }}>
             MASUK KE AKUN ANDA
@@ -64,7 +64,7 @@ export default function LoginPage({ onLogin }: { onLogin: () => void }) {
           </div>
 
           {/* Password */}
-          <div style={{ display: "flex", alignItems: "center", marginBottom: 64 }}>
+          <div style={{ display: "flex", alignItems: "center", marginBottom: errorMessage ? 12 : 64 }}>
             <div style={{ background: "#000", borderRadius: "20px 0 0 20px", width: 57, height: 41, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
               <svg width={20} height={22} viewBox="0 0 31 30" fill="white">
                 <path d="M17.5 14.6a4.2 4.2 0 014.2 4.2 4.2 4.2 0 01-4.2 4.2 4.2 4.2 0 01-4.2-4.2 4.2 4.2 0 014.2-4.2m0 2.2a2 2 0 000 4 2 2 0 000-4zm11.3-6.7H25v-3.4A8.8 8.8 0 0017.5 0a8.8 8.8 0 00-8.8 6.7v3.4H5a2.3 2.3 0 00-2.2 2.3v14.3a2.3 2.3 0 002.2 2.3h23.8a2.3 2.3 0 002.2-2.3V12.4a2.3 2.3 0 00-2.2-2.3zm-18.8-3.4a6.5 6.5 0 016.5-4.5 6.5 6.5 0 016.5 4.5v3.4H10v-3.4zm18.8 20H5V12.4h23.8v14.3z" />
@@ -75,12 +75,19 @@ export default function LoginPage({ onLogin }: { onLogin: () => void }) {
               placeholder="******************"
               value={password}
               onChange={e => setPassword(e.target.value)}
+              onKeyDown={e => { if (e.key === "Enter") handleSubmit(); }}
               style={{ flex: 1, height: 41, border: "none", borderRadius: "0 20px 20px 0", padding: "0 20px", fontFamily: "'Poppins', sans-serif", fontSize: 16, outline: "none" }}
             />
           </div>
 
+          {errorMessage && (
+            <p style={{ color: "#FFD1D1", fontSize: 14, margin: "0 0 20px", textAlign: "center", fontFamily: "'Poppins', sans-serif", fontWeight: 600 }}>
+              ⚠️ {errorMessage}
+            </p>
+          )}
+
           <button
-            onClick={onLogin}
+            onClick={handleSubmit}
             style={{ width: "100%", height: 54, background: "#fff", border: "none", borderRadius: 20, fontFamily: "'Open Sans', sans-serif", fontWeight: 800, fontSize: 36, cursor: "pointer", color: "#000", marginBottom: 12 }}
           >
             LOGIN

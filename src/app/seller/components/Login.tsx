@@ -2,9 +2,6 @@ import "../styles/login.css";
 import { useState } from "react";
 import { LogoMark } from "./LogoMark";
 
-const VALID_EMAIL    = "seller@wcr.com";
-const VALID_PASSWORD = "seller123";
-
 function EnvelopeIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -37,18 +34,24 @@ function AccountIcon() {
   );
 }
 
-export default function Login({ onCreateAccount, onLogin, onBack }: { onCreateAccount?: () => void; onLogin?: () => void; onBack?: () => void }) {
+export default function Login({
+  onCreateAccount,
+  onLogin,
+  onBack,
+  errorMessage,
+  heading = "LOGIN",
+}: {
+  onCreateAccount?: () => void;
+  onLogin: (email: string, password: string) => void;
+  onBack?: () => void;
+  errorMessage?: string;
+  heading?: string;
+}) {
   const [email, setEmail]       = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError]       = useState("");
 
   function handleLogin() {
-    if (email === VALID_EMAIL && password === VALID_PASSWORD) {
-      setError("");
-      onLogin?.();
-    } else {
-      setError("Email atau password salah. Silakan coba lagi.");
-    }
+    onLogin(email, password);
   }
 
   return (
@@ -66,7 +69,7 @@ export default function Login({ onCreateAccount, onLogin, onBack }: { onCreateAc
 
       <main className="login-card">
         <section className="login-card__side login-card__side--left">
-          <h1 className="login-card__title">LOGIN</h1>
+          <h1 className="login-card__title">{heading}</h1>
           <p className="login-card__subtitle">MASUK KE AKUN ANDA</p>
 
           <form className="login-card__form" onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
@@ -78,7 +81,7 @@ export default function Login({ onCreateAccount, onLogin, onBack }: { onCreateAc
                 placeholder="Enter your email"
                 aria-label="Email"
                 value={email}
-                onChange={(e) => { setEmail(e.target.value); setError(""); }}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="login-card__field">
@@ -89,14 +92,14 @@ export default function Login({ onCreateAccount, onLogin, onBack }: { onCreateAc
                 placeholder="******************"
                 aria-label="Password"
                 value={password}
-                onChange={(e) => { setPassword(e.target.value); setError(""); }}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </form>
 
-          {error && (
+          {errorMessage && (
             <p style={{ color: "#ff4d4d", fontSize: 14, margin: "8px 0 0", textAlign: "center", fontFamily: "sans-serif" }}>
-              ⚠️ {error}
+              ⚠️ {errorMessage}
             </p>
           )}
 
